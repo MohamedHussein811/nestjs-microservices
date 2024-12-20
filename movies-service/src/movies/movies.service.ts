@@ -11,7 +11,21 @@ export class MoviesService {
     return this.movieModel.create(movieData);
   }
 
+  async update(id: string, movieData: { title: string; description: string; releaseYear: number }) {
+    return this.movieModel.findByIdAndUpdate(id, movieData, { new: true });
+
+  }
+
+  async remove(id: string) {
+    return this.movieModel.findByIdAndDelete(id);
+  }
+  
+
   async findAll() {
     return this.movieModel.find();
+  }
+
+  async findOne(id: string) {
+    return this.movieModel.findById(id);
   }
 }

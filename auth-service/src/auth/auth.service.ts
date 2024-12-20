@@ -28,6 +28,22 @@ export class AuthService {
     const token = jwt.sign({ userId: user._id }, 'secretKey', { expiresIn: '1h' });
     return { token };
   }
+
+  async findAll() {
+    return this.userModel.find();
+  }
+  
+
+  async update(id: string, user: { email: string; password: string }) {
+    const updatedUser = await this.userModel.findByIdAndUpdate
+    (id, user, { new: true });
+    return updatedUser;
+  }
+
+  async remove(id: string) {
+    return this.userModel.findByIdAndDelete(id);
+  }
+
 }
 
 
